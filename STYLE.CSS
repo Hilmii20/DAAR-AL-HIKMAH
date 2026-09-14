@@ -1,0 +1,560 @@
+/* ================================
+   RESET
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #123f70;
+    color: #17365d;
+}
+
+
+/* ================================
+   WEBSITE
+================================ */
+
+.website {
+    width: 100%;
+    max-width: 750px;
+    min-height: 100vh;
+    margin: auto;
+    background: #123f70;
+    overflow: hidden;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.header {
+    position: relative;
+    background: #123f70;
+    padding: 35px 20px 70px;
+}
+
+
+/* ================================
+   HEADER CONTENT
+================================ */
+
+.header-content {
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+
+
+    margin: auto;
+    margin-bottom: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: white;
+    color: #123f70;
+
+    font-size: 28px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.header-content h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+}
+
+.header-content p {
+    font-size: 13px;
+    color: #dbe8f6;
+}
+
+
+/* ================================
+   SEARCH BOX
+================================ */
+
+.search-box {
+    position: relative;
+
+    width: 92%;
+    margin: 0 auto;
+
+    padding: 25px;
+
+    background: white;
+
+    border-radius: 25px;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+}
+
+.search-box h2 {
+    text-align: center;
+
+    color: #173f6b;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+.search-box p {
+    text-align: center;
+
+    color: #718096;
+
+    font-size: 12px;
+
+    margin-bottom: 18px;
+}
+
+
+/* ================================
+   SEARCH AREA
+================================ */
+
+.search-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-area input {
+    flex: 1;
+
+    height: 55px;
+
+    padding: 0 20px;
+
+    border: 1px solid #d5e0ed;
+
+    border-radius: 30px;
+
+    outline: none;
+
+    background: #f5f8fc;
+
+    color: #173f6b;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 13px;
+}
+
+.search-area input::placeholder {
+    color: #9aa9ba;
+}
+
+.search-area input:focus {
+    border-color: #286da5;
+    background: white;
+}
+
+
+/* ================================
+   SEARCH BUTTON
+================================ */
+
+.search-area button {
+    width: 55px;
+    height: 55px;
+
+    flex-shrink: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #286da5;
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18);
+
+    transition: 0.2s;
+}
+
+.search-area button:hover {
+    background: #1d5788;
+    transform: scale(1.05);
+}
+
+.search-area button:active {
+    transform: scale(0.96);
+}
+
+
+/* ================================
+   CONTENT
+================================ */
+
+.content {
+    padding: 20px 25px 60px;
+
+    background: #123f70;
+}
+
+
+/* ================================
+   MESSAGE
+================================ */
+
+#message {
+    margin-bottom: 20px;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px 18px;
+
+    border-radius: 15px;
+
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.message.success {
+    background: #e5f6ed;
+    color: #26734d;
+}
+
+.message.error {
+    background: #fff0f0;
+    color: #b23b3b;
+}
+
+.message.loading {
+    background: #edf4fb;
+    color: #286da5;
+}
+
+
+/* ================================
+   CARD
+================================ */
+
+.card {
+    background: white;
+
+    margin-bottom: 18px;
+
+    padding: 22px;
+
+    border-radius: 22px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ================================
+   CARD TITLE
+================================ */
+
+.card-title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    margin-bottom: 20px;
+}
+
+.card-title .icon {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #e7f0fa;
+
+    color: #286da5;
+
+    font-size: 18px;
+}
+
+.card-title h2 {
+    color: #173f6b;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    margin-bottom: 2px;
+}
+
+.card-title p {
+    color: #8795a7;
+
+    font-size: 11px;
+}
+
+
+/* ================================
+   DATA LIST
+================================ */
+
+.data-list {
+    width: 100%;
+}
+
+.data-row {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid #e8edf3;
+}
+
+.data-row:first-child {
+    padding-top: 0;
+}
+
+.data-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.data-row span {
+    color: #7187a0;
+
+    font-size: 12px;
+
+    flex: 0 0 40%;
+}
+
+.data-row strong {
+    color: #173f6b;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-align: right;
+
+    flex: 1;
+
+    word-break: break-word;
+}
+
+
+/* ================================
+   CATATAN
+================================ */
+
+.catatan {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.catatan-item {
+    padding: 15px;
+
+    border-radius: 15px;
+
+    background: #f3f7fb;
+
+    border-left: 4px solid #286da5;
+}
+
+.catatan-item span {
+    display: block;
+
+    color: #718096;
+
+    font-size: 11px;
+
+    margin-bottom: 5px;
+}
+
+.catatan-item p {
+    color: #284b70;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+    background: #123f70;
+
+    text-align: center;
+
+    padding: 25px 20px 35px;
+
+    color: #dbe8f6;
+}
+
+.footer-icon {
+    width: 40px;
+    height: 40px;
+
+    margin: 0 auto 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    color: white;
+
+    font-size: 15px;
+}
+
+footer p {
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    margin-bottom: 3px;
+}
+
+footer span {
+    font-size: 10px;
+
+    color: #c5d7e9;
+}
+
+
+/* ================================
+   RESPONSIVE HP
+================================ */
+
+@media (max-width: 600px) {
+
+    .header {
+        padding: 30px 15px 55px;
+    }
+
+    .header-content h1 {
+        font-size: 22px;
+    }
+
+    .header-content p {
+        font-size: 12px;
+    }
+
+    .logo {
+        width: 58px;
+        height: 58px;
+
+        font-size: 24px;
+    }
+
+    .search-box {
+        width: 94%;
+        padding: 20px;
+    }
+
+    .search-box h2 {
+        font-size: 17px;
+    }
+
+    .content {
+        padding: 15px 15px 45px;
+    }
+
+    .card {
+        padding: 19px;
+        border-radius: 19px;
+    }
+
+    .card-title .icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .card-title h2 {
+        font-size: 15px;
+    }
+
+    .data-row span {
+        font-size: 11px;
+    }
+
+    .data-row strong {
+        font-size: 12px;
+    }
+}
+
+
+/* ================================
+   HP KECIL
+================================ */
+
+@media (max-width: 380px) {
+
+    .search-box {
+        width: 95%;
+        padding: 17px;
+    }
+
+    .search-area {
+        gap: 7px;
+    }
+
+    .search-area input {
+        height: 49px;
+        padding: 0 15px;
+        font-size: 12px;
+    }
+
+    .search-area button {
+        width: 49px;
+        height: 49px;
+    }
+
+    .content {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .data-row {
+        gap: 10px;
+    }
+}
