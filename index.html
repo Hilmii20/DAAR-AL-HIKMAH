@@ -149,6 +149,18 @@
 
                     <div class="data-list">
 
+                        <div class="data-row">
+
+                            <span>
+                                Periode
+                            </span>
+
+                            <strong id="periode">
+                                -
+                            </strong>
+
+                        </div>
+
 
                         <div class="data-row">
 
@@ -453,7 +465,7 @@
         =====================================
         */
 
-       const API_URL = "https://script.google.com/macros/s/AKfycbw2AEhCCzvSdfzVv9TCoBXidPn7hFWru7byKoqOvlsJceCBiyccd7q4eoZRLkJQXjyrMQ/exec";
+       const API_URL = "https://script.google.com/macros/s/AKfycbxyTzw0HjgXSVdriV_BpP9pEwzoADKbV7T-5K9iosjX41e00rNHVhUrvz_xGFrbMp8Vig/exec";
 
         /*
         =====================================
@@ -571,6 +583,10 @@
                     document.getElementById("nama")
                         .textContent =
                         data.nama || "-";
+
+                    document.getElementById("periode")
+                         .textContent =
+                        data.periode || "-";
 
 
                     document.getElementById("noPaspor")
