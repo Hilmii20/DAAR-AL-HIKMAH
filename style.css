@@ -569,3 +569,76 @@ footer span {
         gap: 10px;
     }
 }
+
+/* ================================
+   PERIODE LAPORAN
+================================ */
+
+.period-card {
+    display: flex;
+    align-items: center;
+
+    background: white;
+
+    margin-bottom: 18px;
+    padding: 16px 22px;
+
+    border-radius: 22px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* IKON PERIODE */
+.period-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #e7f0fa;
+
+    color: #286da5;
+
+    font-size: 18px;
+
+    margin-right: 13px;
+}
+
+/* JUDUL + SUBJUDUL */
+.period-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.period-info h2 {
+    color: #173f6b;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    margin: 0 0 2px 0;
+}
+
+.period-info p {
+    color: #8795a7;
+
+    font-size: 11px;
+
+    margin: 0;
+}
+
+/* BULAN DI KANAN */
+.period-card > strong {
+    margin-left: auto;
+
+    color: #173f6b;
+
+    font-size: 14px;
+    font-weight: 600;
+}
