@@ -642,3 +642,42 @@ footer span {
     font-size: 14px;
     font-weight: 600;
 }
+
+/* ================================
+   CONTACT US
+================================ */
+
+.contact-us {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.contact-us a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 22px;
+
+    background: #ffffff;
+    color: #173f6b;
+
+    border-radius: 25px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+
+    transition: 0.2s;
+}
+
+.contact-us a:hover {
+    transform: translateY(-2px);
+}
+
+.contact-us i {
+    font-size: 18px;
+}
