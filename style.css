@@ -648,36 +648,32 @@ footer span {
 ================================ */
 
 .contact-us {
-    text-align: center;
-    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
 }
 
 .contact-us a {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
 
-    padding: 12px 22px;
+    padding: 10px 18px;
 
-    background: #ffffff;
+    background: white;
     color: #173f6b;
 
-    border-radius: 25px;
+    border-radius: 20px;
 
     text-decoration: none;
 
     font-size: 13px;
     font-weight: 600;
 
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
-
-    transition: 0.2s;
-}
-
-.contact-us a:hover {
-    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
 }
 
 .contact-us i {
-    font-size: 18px;
+    font-size: 17px;
 }
