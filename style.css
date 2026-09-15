@@ -547,14 +547,17 @@ footer span {
     }
 
     .search-area input {
-        height: 49px;
+        height: 48px;
         padding: 0 15px;
-        font-size: 12px;
+        font-size: 14px;
+        flex: 1;
+        min-width: 0;
     }
 
     .search-area button {
-        width: 49px;
-        height: 49px;
+        width: 48px;
+        height: 48px;
+        flex-shrink: 0;
     }
 
     .content {
