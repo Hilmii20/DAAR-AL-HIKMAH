@@ -179,23 +179,31 @@ body {
 .search-area button {
     width: 55px;
     height: 55px;
-
     flex-shrink: 0;
 
     border: none;
     border-radius: 50%;
 
     background: #286da5;
-
     color: white;
 
     font-size: 20px;
-
     cursor: pointer;
-
+ /*  */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18);
 
     transition: 0.2s;
+
+    margin-right: 8px;
+}
+
+.search-area button:hover {
+    background: #1d5788;
+    transform: scale(1.05);
+}
+
+.search-area button:active {
+    transform: scale(0.96);
 }
 
 .search-area button:hover {
