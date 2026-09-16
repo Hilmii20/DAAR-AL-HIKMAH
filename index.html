@@ -2,797 +2,357 @@
 <html lang="id">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>DHOBIT MESIR</title>
     <link rel="icon" type="image/PNG" href="favicon.PNG">
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-
 </head>
 
- 
 <body>
-
-
     <div class="website">
 
-
-        <!-- =================================
-             HEADER
-        ================================== -->
-
+        <!-- HEADER -->
         <header class="header">
-
             <div class="header-content">
-
                 <div class="logo">
                     <i class="fa-solid fa-mosque" style="font-size: 35px;"></i>
                 </div>
-
-                <h1>
-                    LAPORAN SANTRI DAAR MESIR
-                </h1>
-
-                <p>
-                    Informasi perkembangan santri
-                </p>
-
+                <h1>LAPORAN SANTRI DAAR MESIR</h1>
+                <p>Informasi perkembangan santri</p>
             </div>
 
-
-            <!-- =================================
-                 SEARCH
-            ================================== -->
-
+            <!-- SEARCH -->
             <div class="search-box">
-
-                <h2>
-                    Cari Data Santri
-                </h2>
-
-                <p>
-                    Masukkan kata kunci
-                </p>
-
-
+                <h2>Cari Data Santri</h2>
+                <p>Masukkan kata kunci</p>
                 <div class="search-area">
-
-                    <input
-                        type="text"
-                        id="noPasporInput"
-                        placeholder="Masuk dengan no paspor"
-                    >
-
+                    <input type="text" id="noPasporInput" placeholder="Masuk dengan no paspor">
                     <button onclick="cariSantri()">
-
                         <i class="fa-solid fa-magnifying-glass"></i>
-
                     </button>
-
                 </div>
-
             </div>
-
         </header>
 
-
-
-        <!-- =================================
-             CONTENT
-        ================================== -->
-
+        <!-- CONTENT -->
         <main class="content">
-
 
             <!-- PESAN -->
             <div id="message"></div>
 
+            <!-- HASIL DATA SANTRI -->
+            <div id="hasilSantri" class="hasil-santri" style="display: none;">
 
-
-            <!-- =================================
-                 HASIL DATA SANTRI
-            ================================== -->
-
-            <div
-                id="hasilSantri"
-                class="hasil-santri"
-                style="display: none;"
-            >
-
-            <!-- PERIODE LAPORAN -->
-
-                    <section class="card">
-
-                        <div class="card-title">
-
-                            <div class="icon">
-                                <i class="fa-solid fa-calendar-days"></i>
-                            </div>
-
-                            <div class="academic-info">
-
-                                <h2>
-                                    Tahun Akademik 26/27
-                                </h2>
-
-                                <p>
-                                    Semester Ganjil
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <div class="data-row">
-
-                            <span>
-                                Bulan
-                            </span>
-
-                            <strong id="periode">
-                                -
-                            </strong>
-
-                        </div>
-
-                    </section>
-
-                <!-- =================================
-                     IDENTITAS
-                ================================== -->
-
-
+                <!-- PERIODE LAPORAN -->
                 <section class="card">
-
                     <div class="card-title">
+                        <div class="icon">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <div class="academic-info">
+                            <h2>Tahun Akademik 26/27</h2>
+                            <p><b>Semester ganjil</b></p>
+                        </div>
+                    </div>
+                    <div class="data-row">
+                        <span>Bulan</span>
+                        <strong id="periode">-</strong>
+                    </div>
+                </section>
 
+                <!-- IDENTITAS -->
+                <section class="card">
+                    <div class="card-title">
                         <div class="icon">
                             <i class="fa-solid fa-user"></i>
                         </div>
-
                         <div>
-
-                            <h2>
-                                Data Santri
-                            </h2>
-
-                            <p>
-                                <b>Identitas santri</b>
-                            </p>
-
+                            <h2>Data Santri</h2>
+                            <p><b>Identitas santri</b></p>
                         </div>
-
                     </div>
-
-
                     <div class="data-list">
-
-
                         <div class="data-row">
-
-                            <span>
-                                Nama
-                            </span>
-
-                            <strong id="nama">
-                                -
-                            </strong>
-
+                            <span>Nama</span>
+                            <strong id="nama">-</strong>
                         </div>
-
-
                         <div class="data-row">
-
-                            <span>
-                                No. Paspor
-                            </span>
-
-                            <strong id="noPaspor">
-                                -
-                            </strong>
-
+                            <span>No. Paspor</span>
+                            <strong id="noPaspor">-</strong>
                         </div>
-
-
                         <div class="data-row">
-
-                            <span>
-                                Pendidikan
-                            </span>
-
-                            <strong id="pendidikan">
-                                -
-                            </strong>
-
+                            <span>Pendidikan</span>
+                            <strong id="pendidikan">-</strong>
                         </div>
-
-
                         <div class="data-row">
-
-                            <span>
-                                Rumah
-                            </span>
-
-                            <strong id="rumah">
-                                -
-                            </strong>
-
+                            <span>Rumah</span>
+                            <strong id="rumah">-</strong>
                         </div>
-
-
                     </div>
-
                 </section>
 
-
-
-                <!-- =================================
-                     HAFALAN
-                ================================== -->
-
+                <!-- HAFALAN -->
                 <section class="card">
-
                     <div class="card-title">
-
                         <div class="icon">
                             <i class="fa-solid fa-book-quran"></i>
                         </div>
-
                         <div>
-
-                            <h2>
-                                Al-Qur'an
-                            </h2>
-
-                            <p>
-                                <b>Perkembangan hafalan santri</b>
-                            </p>
-
+                            <h2>Al-Qur'an</h2>
+                            <p><b>Perkembangan hafalan santri</b></p>
                         </div>
-
                     </div>
-
-
                     <div class="data-list">
-
-
                         <div class="data-row">
-
-                            <span>
-                                Hafalan Baru
-                            </span>
-
-                            <strong id="hafalanBaru">
-                                -
-                            </strong>
-
+                            <span>Hafalan Baru</span>
+                            <strong id="hafalanBaru">-</strong>
                         </div>
-
-
                         <div class="data-row">
-
-                            <span>
-                                Murajaah
-                            </span>
-
-                            <strong id="murajaah">
-                                -
-                            </strong>
-
+                            <span>Murajaah</span>
+                            <strong id="murajaah">-</strong>
                         </div>
-
-
                         <div class="data-row">
-
-                            <span>
-                                Target Tasmi'
-                            </span>
-
-                            <strong id="targetTasmi">
-                                -
-                            </strong>
-
+                            <span>Target Tasmi'</span>
+                            <strong id="targetTasmi">-</strong>
                         </div>
-
-
                     </div>
-
                 </section>
 
-
-
-                <!-- =================================
-                     MATAN & BACA BUKU
-                ================================== -->
-
+                <!-- AKADEMIK -->
                 <section class="card">
-
                     <div class="card-title">
+                        <div class="icon">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h2>Akademik</h2>
+                            <p><b>Perkembangan akademik santri</b></p>
+                        </div>
+                    </div>
+                    <div class="data-list">
+                        <div class="data-row">
+                            <span>Sekolah</span>
+                            <strong id="sekolah">-</strong>
+                        </div>
+                        <div class="data-row">
+                            <span>Bimbel</span>
+                            <strong id="bimbel">-</strong>
+                        </div>
+                        <div class="data-row">
+                            <span>Penggunaan HP</span>
+                            <strong id="penggunaanHP">-</strong>
+                        </div>
+                    </div>
+                </section>
 
+                <!-- KEPRIBADIAN -->
+                <section class="card">
+                    <div class="card-title">
+                        <div class="icon">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <div>
+                            <h2>Kepribadian</h2>
+                            <p><b>Perkembangan yaumiyah santri</b></p>
+                        </div>
+                    </div>
+                    <div class="data-list">
+                        <div class="data-row">
+                            <span>Akhlaq</span>
+                            <strong id="akhlaq">-</strong>
+                        </div>
+                        <div class="data-row">
+                            <span>Adab</span>
+                            <strong id="adab">-</strong>
+                        </div>
+                        <div class="data-row">
+                            <span>Ubudiyah</span>
+                            <strong id="ubudiyyah">-</strong>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MATAN & BACA BUKU -->
+                <section class="card">
+                    <div class="card-title">
                         <div class="icon">
                             <i class="fa-solid fa-book"></i>
                         </div>
-
                         <div>
-
-                            <h2>
-                                Matan & Bacaan
-                            </h2>
-
-                            <p>
-                                <b>Perkembangan pembelajaran</b>
-                            </p>
-
+                            <h2>Matan & Bacaan</h2>
+                            <p><b>Perkembangan pembelajaran</b></p>
                         </div>
-
                     </div>
-
-
                     <div class="data-list">
-
-
                         <div class="data-row">
-
-                            <span>
-                                Hafal Matan
-                            </span>
-
-                            <strong id="hafalMatan">
-                                -
-                            </strong>
-
+                            <span>Hafal Matan</span>
+                            <strong id="hafalMatan">-</strong>
                         </div>
-
-
                         <div class="data-row">
-
-                            <span>
-                                Baca Buku
-                            </span>
-
-                            <strong id="bacaBuku">
-                                -
-                            </strong>
-
+                            <span>Baca Buku</span>
+                            <strong id="bacaBuku">-</strong>
                         </div>
-
-
                     </div>
-
                 </section>
 
-
-
-                <!-- =================================
-                     CATATAN
-                ================================== -->
-
+                <!-- CATATAN -->
                 <section class="card catatan-card">
-
                     <div class="card-title">
-
                         <div class="icon">
                             <i class="fa-solid fa-note-sticky"></i>
                         </div>
-
                         <div>
-
-                            <h2>
-                                Catatan
-                            </h2>
-
-                            <p>
-                                <b>Informasi dari musyrif/ah</b>
-                            </p>
-
+                            <h2>Catatan</h2>
+                            <p><b>Informasi dari musyrif/ah</b></p>
                         </div>
-
                     </div>
-
-
                     <div class="catatan">
-
-
                         <div class="catatan-item">
-
-                            <span>
-                                <b>Keterangan</b>
-                            </span>
-
-                            <p id="keterangan">
-                                -
-                            </p>
-
+                            <span><b>Keterangan</b></span>
+                            <p id="keterangan">-</p>
                         </div>
-
-
                         <div class="catatan-item">
-
-                            <span>
-                                <b>Musyrif/ah</b>
-                            </span>
-
-                            <p id="musyrif">
-                                -
-                            </p>
-
+                            <span><b>Musyrif/ah</b></span>
+                            <p id="musyrif">-</p>
                         </div>
-
-
                     </div>
-
                 </section>
 
-
             </div>
-
-
         </main>
 
-
-
         <!-- CONTACT US -->
+        <div class="contact-us">
+            <a href="https://wa.me/6285294711671" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> Hubungi kami
+            </a>
+        </div>
 
-<div class="contact-us">
-
-    <a href="https://wa.me/6285294711671" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i>
-        Hubungi kami
-    </a>
-
-</div>
-
-
-
-        <!-- =================================
-             FOOTER
-        ================================== -->
-
+        <!-- FOOTER -->
         <footer>
-
             <div class="footer-icon">
                 <i class="fa-solid fa-file-lines" style="font-size:14px;"></i>
             </div>
-
-            <p>
-                Dhobit Al-Azhar Al-Hikmah Mesir
-            </p>
-
-            <span>
-                Laporan ini kami batasi hanya satu minggu dan akan kami update kembali pada akhir bulan
-            </span>
-
+            <p>Dhobit Al-Azhar Al-Hikmah Mesir</p>
+            <span>Laporan ini kami batasi hanya satu minggu dan akan kami update kembali pada akhir bulan</span>
         </footer>
-
 
     </div>
 
-
-
-    <!-- =================================
-         JAVASCRIPT
-    ================================== -->
-
+    <!-- JAVASCRIPT -->
     <script>
-
-        /*
-        =====================================
-        GOOGLE APPS SCRIPT
-
-        NANTI URL APPS SCRIPT KAMU
-        DITEMPATKAN DI SINI
-        =====================================
-        */
-
-       const API_URL = "https://script.google.com/macros/s/AKfycbxyTzw0HjgXSVdriV_BpP9pEwzoADKbV7T-5K9iosjX41e00rNHVhUrvz_xGFrbMp8Vig/exec";
-
-        /*
-        =====================================
-        FUNGSI CARI SANTRI
-        =====================================
-        */
+        const API_URL = "https://script.google.com/macros/s/AKfycbzyBxPoNve6ysRO9Sd1efG0SJAIlN-C-ox5bgT35t8-j0ZEfjIk7LjxgVyKeoWqZPTkEQ/exec";
 
         async function cariSantri() {
-
-
-            const input =
-                document.getElementById("noPasporInput");
-
-
-            const noPaspor =
-                input.value.trim();
-
-
-            const message =
-                document.getElementById("message");
-
-
-            const hasil =
-                document.getElementById("hasilSantri");
-
-
-            /*
-            Jika input kosong
-            */
+            const input = document.getElementById("noPasporInput");
+            const noPaspor = input.value.trim();
+            const message = document.getElementById("message");
+            const hasil = document.getElementById("hasilSantri");
 
             if (noPaspor === "") {
-
                 hasil.style.display = "none";
-
                 message.innerHTML = `
-
                     <div class="message error">
-
                         <i class="fa-solid fa-circle-exclamation"></i>
-
                         Silakan masukkan nomor paspor.
-
                     </div>
-
                 `;
-
                 return;
-
             }
-
-
-            /*
-            Tampilkan loading
-            */
 
             message.innerHTML = `
-
                 <div class="message loading">
-
                     <i class="fa-solid fa-spinner fa-spin"></i>
-
                     Sedang mencari data...
-
                 </div>
-
             `;
 
-
             try {
-
-
-                /*
-                Kirim nomor paspor
-                ke Apps Script
-                */
-
-                const response =
-                    await fetch(
-                        API_URL +
-                        "?passport=" +
-                        encodeURIComponent(noPaspor)
-                    );
-
-
-                const data =
-                    await response.json();
-
-
-                /*
-                Jika ditemukan
-                */
+                const response = await fetch(`${API_URL}?passport=${encodeURIComponent(noPaspor)}`);
+                const data = await response.json();
 
                 if (data.success) {
-
+                    const santri = data.data;
 
                     message.innerHTML = `
-
                         <div class="message success">
-
                             <i class="fa-solid fa-circle-check"></i>
-
                             Data santri ditemukan.
-
                         </div>
-
                     `;
 
+                    // DATA SANTRI
+                    document.getElementById("nama").textContent = santri.nama || "-";
+                    document.getElementById("periode").textContent = santri.periode || "-";
+                    document.getElementById("noPaspor").textContent = santri.noPaspor || noPaspor;
+                    document.getElementById("pendidikan").textContent = santri.pendidikan || "-";
+                    document.getElementById("rumah").textContent = santri.rumah || "-";
 
-                    /*
-                    ==============================
-                    DATA SANTRI
-                    ==============================
-                    */
+                    // AL-QUR'AN
+                    document.getElementById("hafalanBaru").textContent = santri.hafalanBaru || "-";
+                    document.getElementById("murajaah").textContent = santri.tilawah || "-";
+                    document.getElementById("targetTasmi").textContent = santri.targetTasmi || "-";
 
-                    document.getElementById("nama")
-                        .textContent =
-                        data.nama || "-";
+                    // AKADEMIK
+                    document.getElementById("sekolah").textContent = santri.sekolah || "-";
+                    document.getElementById("bimbel").textContent = santri.bimbel || "-";
+                    document.getElementById("penggunaanHP").textContent = santri.penggunaanHP || "-";
 
-                    document.getElementById("periode")
-                         .textContent =
-                        data.periode || "-";
+                    // KEPRIBADIAN
+                    document.getElementById("akhlaq").textContent = santri.akhlaq || "-";
+                    document.getElementById("adab").textContent = santri.adab || "-";
+                    document.getElementById("ubudiyyah").textContent = santri.ubudiyyah || "-";
 
+                    // MATAN & BACAAN
+                    document.getElementById("hafalMatan").textContent = santri.hafalMatan || "-";
+                    document.getElementById("bacaBuku").textContent = santri.bacaBuku || "-";
 
-                    document.getElementById("noPaspor")
-                        .textContent =
-                        data.noPaspor || noPaspor;
-
-
-                    document.getElementById("pendidikan")
-                        .textContent =
-                        data.pendidikan || "-";
-
-
-                    document.getElementById("rumah")
-                        .textContent =
-                        data.rumah || "-";
-
-
-                    /*
-                    ==============================
-                    HAFALAN
-                    ==============================
-                    */
-
-                    document.getElementById("hafalanBaru")
-                        .textContent =
-                        data.hafalanBaru || "-";
-
-
-                    document.getElementById("murajaah")
-                        .textContent =
-                        data.murajaah || "-";
-
-
-                    document.getElementById("targetTasmi")
-                        .textContent =
-                        data.targetTasmi || "-";
-
-
-                    /*
-                    ==============================
-                    MATAN
-                    ==============================
-                    */
-
-                    document.getElementById("hafalMatan")
-                        .textContent =
-                        data.hafalMatan || "-";
-
-
-                    document.getElementById("bacaBuku")
-                        .textContent =
-                        data.bacaBuku || "-";
-
-
-                    /*
-                    ==============================
-                    CATATAN
-                    ==============================
-                    */
-
-                    document.getElementById("keterangan")
-                        .textContent =
-                        data.keterangan || "-";
-
-
-                    document.getElementById("musyrif")
-                        .textContent =
-                        data.musyrif || "-";
-
-
-                    /*
-                    Tampilkan hasil
-                    */
+                    // CATATAN
+                    document.getElementById("keterangan").textContent = santri.keterangan || "-";
+                    document.getElementById("musyrif").textContent = santri.musyrif || "-";
 
                     hasil.style.display = "block";
+                    hasil.scrollIntoView({ behavior: "smooth" });
 
-
-                    /*
-                    Scroll otomatis
-                    */
-
-                    hasil.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-
-                }
-
-                else {
-
-
-                    /*
-                    Data tidak ditemukan
-                    */
-
+                } else {
                     hasil.style.display = "none";
-
-
                     message.innerHTML = `
-
                         <div class="message error">
-
                             <i class="fa-solid fa-circle-xmark"></i>
-
-                            Nomor paspor tidak ditemukan.
-
+                            ${data.message || 'Nomor paspor tidak ditemukan.'}
                         </div>
-
                     `;
-
                 }
 
-
-            }
-
-
-            catch (error) {
-
-
+            } catch (error) {
                 console.error(error);
-
-
                 hasil.style.display = "none";
-
-
                 message.innerHTML = `
-
                     <div class="message error">
-
                         <i class="fa-solid fa-triangle-exclamation"></i>
-
                         Terjadi kesalahan saat mengambil data.
-
                     </div>
-
                 `;
-
             }
-
         }
 
-
-
-        /*
-        =====================================
-        TEKAN ENTER UNTUK MENCARI
-        =====================================
-        */
-
-        document
-            .getElementById("noPasporInput")
-            .addEventListener(
-                "keypress",
-                function(event) {
-
-                    if (event.key === "Enter") {
-
-                        cariSantri();
-
-                    }
-
-                }
-            );
-
+        document.getElementById("noPasporInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                cariSantri();
+            }
+        });
     </script>
-
-
 </body>
 
 </html>
