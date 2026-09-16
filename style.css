@@ -677,3 +677,31 @@ footer span {
 .contact-us i {
     font-size: 17px;
 }
+
+/* ==============================
+   JARAK KARTU TAHUN AKADEMIK
+============================== */
+
+.academic-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.academic-info h2 {
+    margin: 0 0 2px 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #173f6b;
+    white-space: nowrap;
+}
+
+.academic-info p {
+    margin: 0;
+    font-size: 11px;
+    color: #8795a7;
+}
+
+/* Bulan lebih dekat dengan bagian atas */
+.card:has(.academic-info) .data-row {
+    margin-top: -15px;
+}
