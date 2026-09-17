@@ -292,6 +292,17 @@
                         </div>
                     `;
 
+                    setTimeout(() => {
+                        message.classList.add("fade-out");
+
+                        setTimeout(() => {
+                            message.innerHTML = "";
+                            message.classList.remove("fade-out");
+                        }, 500);
+
+                    }, 2500);
+
+
                     // DATA SANTRI
                     document.getElementById("nama").textContent = santri.nama || "-";
                     document.getElementById("periode").textContent = santri.periode || "-";
