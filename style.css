@@ -713,3 +713,55 @@ footer span {
 #message.fade-out {
     opacity: 0;
 }
+
+/* =========================
+   LAYOUT FOTO & DATA SANTRI
+========================= */
+
+.identitas-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 26px;
+}
+
+/* FOTO SANTRI */
+.foto-santri {
+    flex-shrink: 0;
+    margin-left: 5px;
+}
+
+.foto-santri img {
+    width: 135px;
+    height: 160px;
+    object-fit: contain;
+    border-radius: 12px;
+    display: block;
+}
+
+/* DATA DI SEBELAH FOTO */
+.identitas-layout .data-list {
+    flex: 1;
+}
+
+
+/* =========================
+   TAMPILAN HP
+========================= */
+
+@media (max-width: 600px) {
+
+    .identitas-layout {
+        gap: 14px;
+    }
+
+    .foto-santri {
+        margin-left: 3px;
+    }
+
+    .foto-santri img {
+        width: 90px;
+        height: 112px;
+        border-radius: 9px;
+    }
+
+}

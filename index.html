@@ -54,6 +54,59 @@
             <!-- HASIL DATA SANTRI -->
             <div id="hasilSantri" class="hasil-santri" style="display: none;">
 
+                
+
+                <!-- IDENTITAS -->
+                <section class="card">
+                    <div class="card-title">
+                        <div class="icon">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <h2>Data Santri</h2>
+                            <p><b>Identitas Santri</b></p>
+                        </div>
+                    </div>
+                    <div class="identitas-layout">
+
+                        <!-- FOTO SANTRI -->
+                        <div class="foto-santri">
+                            <img
+                                id="fotoSantri"
+                                src=""
+                                alt="Foto Santri"
+                            >
+                        </div>
+
+                        <!-- DATA IDENTITAS -->
+                        <div class="data-list">
+
+                            <div class="data-row">
+                                <span>Nama</span>
+                                <strong id="nama">-</strong>
+                            </div>      
+
+                            <div class="data-row">
+                                <span>No. Paspor</span>
+                                <strong id="noPaspor">-</strong>
+                            </div>
+
+                            <div class="data-row">
+                                <span>Pendidikan</span>
+                                <strong id="pendidikan">-</strong>
+                            </div>
+
+                            <div class="data-row">
+                                <span>Rumah</span>
+                                <strong id="rumah">-</strong>
+                            </div>
+                        
+                        </div>
+
+                    </div>
+                    
+                </section>
+
                 <!-- PERIODE LAPORAN -->
                 <section class="card">
                     <div class="card-title">
@@ -68,37 +121,6 @@
                     <div class="data-row">
                         <span>Bulan</span>
                         <strong id="periode">-</strong>
-                    </div>
-                </section>
-
-                <!-- IDENTITAS -->
-                <section class="card">
-                    <div class="card-title">
-                        <div class="icon">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div>
-                            <h2>Data Santri</h2>
-                            <p><b>Identitas Santri</b></p>
-                        </div>
-                    </div>
-                    <div class="data-list">
-                        <div class="data-row">
-                            <span>Nama</span>
-                            <strong id="nama">-</strong>
-                        </div>
-                        <div class="data-row">
-                            <span>No. Paspor</span>
-                            <strong id="noPaspor">-</strong>
-                        </div>
-                        <div class="data-row">
-                            <span>Pendidikan</span>
-                            <strong id="pendidikan">-</strong>
-                        </div>
-                        <div class="data-row">
-                            <span>Rumah</span>
-                            <strong id="rumah">-</strong>
-                        </div>
                     </div>
                 </section>
 
@@ -282,7 +304,8 @@
                 const response = await fetch(`${API_URL}?passport=${encodeURIComponent(noPaspor)}`);
                 const data = await response.json();
 
-                if (data.success) {
+               if (data.success) {
+
                     const santri = data.data;
 
                     message.innerHTML = `
@@ -303,13 +326,44 @@
                     }, 2500);
 
 
+                    // =========================
                     // DATA SANTRI
+                    // =========================
+
                     document.getElementById("nama").textContent = santri.nama || "-";
                     document.getElementById("periode").textContent = santri.periode || "-";
                     document.getElementById("noPaspor").textContent = santri.noPaspor || noPaspor;
                     document.getElementById("pendidikan").textContent = santri.pendidikan || "-";
                     document.getElementById("rumah").textContent = santri.rumah || "-";
 
+                    // =========================
+                    // FOTO SANTRI
+                    // =========================
+
+                    const foto = document.getElementById("fotoSantri");
+
+                    if (santri.foto) {
+
+                        const match = santri.foto.match(/[-\w]{25,}/);
+
+                        if (match) {
+
+                            foto.src =
+                                "https://drive.google.com/thumbnail?id=" +
+                                match[0] +
+                                "&sz=w500";
+
+                            } else {
+
+                                foto.src = santri.foto;
+
+                            }
+
+                    } else {
+
+                        foto.src = "";
+
+                    }
                     // AL-QUR'AN
                     document.getElementById("hafalanBaru").textContent = santri.hafalanBaru || "-";
                     document.getElementById("murajaah").textContent = santri.tilawah || "-";
