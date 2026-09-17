@@ -714,54 +714,213 @@ footer span {
     opacity: 0;
 }
 
-/* =========================
-   LAYOUT FOTO & DATA SANTRI
-========================= */
+/* =================================
+   DATA SANTRI - FOTO DI ATAS
+================================= */
 
-.identitas-layout {
+.data-santri-card {
+    text-align: center;
+    padding: 28px 24px 24px;
+}
+
+/* FOTO BULAT */
+.data-santri-card .foto-santri {
     display: flex;
-    align-items: flex-start;
-    gap: 26px;
+    justify-content: center;
+    margin-bottom: 12px;
 }
 
-/* FOTO SANTRI */
-.foto-santri {
-    flex-shrink: 0;
-    margin-left: 5px;
-}
-
-.foto-santri img {
-    width: 135px;
-    height: 160px;
-    object-fit: contain;
-    border-radius: 12px;
+.data-santri-card .foto-santri img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
     display: block;
+
+    border: 3px solid #c7b77a;
+
+    background: #202c3e;
+
+    box-shadow:
+        0 0 0 6px rgba(199, 183, 122, 0.08),
+        0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
-/* DATA DI SEBELAH FOTO */
-.identitas-layout .data-list {
-    flex: 1;
+
+/* NAMA */
+.profile-name {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-name span {
+    display: block;
+    color: #173f6b;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.profile-name h2 {
+    margin: 0;
+    color: #173f6b;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.profile-name p {
+    margin: 4px 0 0;
+    color: #173f6b;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* =================================
+   DATA PILL
+================================= */
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 9px;
+
+    text-align: left;
 }
 
 
-/* =========================
-   TAMPILAN HP
-========================= */
+/* SEMUA PILL */
+.info-pill {
+    min-height: 39px;
+
+    padding: 7px 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 22px;
+
+    border: 2px solid;
+
+    box-sizing: border-box;
+}
+
+
+/* LABEL */
+.info-pill span {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* NILAI */
+.info-pill strong {
+    font-size: 13px;
+    font-weight: 700;
+
+    text-align: right;
+
+    max-width: 65%;
+
+    word-break: break-word;
+}
+
+
+/* =================================
+   DATA IDENTITAS - WARNA SERAGAM
+================================= */
+
+.info-pill {
+    min-height: 39px;
+    padding: 7px 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 22px;
+
+    background: #e7f0fa;
+    border: 2px solid #91b8e4;
+
+    box-sizing: border-box;
+}
+
+
+/* LABEL */
+.info-pill span {
+    color: #286da5;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* NILAI */
+.info-pill strong {
+    color: #173f6b;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-align: right;
+
+    max-width: 65%;
+
+    word-break: break-word;
+}
+
+/* =================================
+   RESPONSIVE HP
+================================= */
 
 @media (max-width: 600px) {
 
-    .identitas-layout {
-        gap: 14px;
+    .data-santri-card {
+        padding: 25px 18px 22px;
+        border-radius: 25px;
     }
 
-    .foto-santri {
-        margin-left: 3px;
+    .data-santri-card .foto-santri {
+        margin-bottom: 11px;
     }
 
-    .foto-santri img {
-        width: 90px;
-        height: 112px;
-        border-radius: 9px;
+    .data-santri-card .foto-santri img {
+        width: 125px;
+        height: 125px;
+    }
+
+    .profile-name {
+        margin-bottom: 19px;
+    }
+
+    .profile-name span {
+        font-size: 13px;
+    }
+
+    .profile-name h2 {
+        font-size: 21px;
+    }
+
+    .profile-name p {
+        font-size: 12px;
+    }
+
+    .profile-info {
+        gap: 9px;
+    }
+
+    .info-pill {
+        min-height: 38px;
+        padding: 6px 13px;
+        border-radius: 21px;
+    }
+
+    .info-pill span,
+    .info-pill strong {
+        font-size: 12px;
     }
 
 }
