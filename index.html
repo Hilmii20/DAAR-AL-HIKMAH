@@ -37,7 +37,7 @@
                 <h2>Cari Data Santri</h2>
                 <p>Masukkan kata kunci</p>
                 <div class="search-area">
-                    <input type="text" id="noPasporInput" placeholder="Masuk dengan no paspor">
+                    <input type="text" id="idMuridInput" placeholder="Masukkan ID Murid">
                     <button onclick="cariSantri()">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
@@ -264,17 +264,17 @@
         const API_URL = "https://script.google.com/macros/s/AKfycbwp_vmOVgXyPzCgyB4E2LAA2aw2P2B5nWLxl4BNqgJso234TeX2J-50RVhVtwtvyf8lKg/exec";
 
         async function cariSantri() {
-            const input = document.getElementById("noPasporInput");
-            const noPaspor = input.value.trim();
+            const input = document.getElementById("idMuridInput");
+            const idMurid = input.value.trim();
             const message = document.getElementById("message");
             const hasil = document.getElementById("hasilSantri");
 
-            if (noPaspor === "") {
+            if (idMurid === "") {
                 hasil.style.display = "none";
                 message.innerHTML = `
                     <div class="message error">
                         <i class="fa-solid fa-circle-exclamation"></i>
-                        Silakan masukkan nomor paspor.
+                        Silakan masukkan ID Murid.
                     </div>
                 `;
                 return;
@@ -288,7 +288,7 @@
             `;
 
             try {
-                const response = await fetch(`${API_URL}?passport=${encodeURIComponent(noPaspor)}`);
+                const response = await fetch(`${API_URL}?idMurid=${encodeURIComponent(idMurid)}`);
                 const data = await response.json();
 
                if (data.success) {
@@ -382,8 +382,7 @@
                     message.innerHTML = `
                         <div class="message error">
                             <i class="fa-solid fa-circle-xmark"></i>
-                            ${data.message || 'Nomor paspor tidak ditemukan.'}
-                        </div>
+                            ${data.message || 'ID Murid tidak ditemukan.'}
                     `;
                 }
 
@@ -399,7 +398,7 @@
             }
         }
 
-        document.getElementById("noPasporInput").addEventListener("keypress", function(event) {
+        document.getElementById("idMuridInput").addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
                 cariSantri();
             }
