@@ -111,6 +111,30 @@
                     </div>
                 </section>
 
+
+                <!-- RIWAYAT LAPORAN -->
+                <section class="card history-card">
+                    <div class="card-title">
+                        <div class="icon">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+                        <div>
+                            <h2>Riwayat Laporan</h2>
+                            <p><b>Pilih bulan laporan yang ingin dilihat</b></p>
+                        </div>
+                    </div>
+                    <label for="historySelect" style="display:block; margin-bottom:8px; color:#526579; font-size:13px;">
+                        Periode laporan
+                    </label>
+                    <select id="historySelect" disabled
+                        style="width:100%; min-height:46px; padding:10px 12px; border:1px solid #d5dde8; border-radius:10px; background:#fff; color:#173f6b; font:inherit;">
+                        <option value="__current__">Laporan terbaru</option>
+                    </select>
+                    <p id="historyNote" style="margin-top:9px; color:#8795a7; font-size:11px;">
+                        Cari ID santri untuk melihat riwayat laporan yang tersedia.
+                    </p>
+                </section>
+
                 <!-- HAFALAN -->
                 <section class="card">
                     <div class="card-title">
@@ -254,7 +278,7 @@
                 <i class="fa-solid fa-file-lines" style="font-size:14px;"></i>
             </div>
             <p>Dhobit Al-Azhar Al-Hikmah Mesir</p>
-            <span>Laporan ini kami batasi hanya satu minggu dan akan kami update kembali pada akhir bulan</span>
+            <span>Pilih periode laporan untuk melihat perkembangan santri pada bulan yang berbeda.</span>
         </footer>
 
     </div>
@@ -263,145 +287,202 @@
     <script>
         const API_URL = "https://script.google.com/macros/s/AKfycbwp_vmOVgXyPzCgyB4E2LAA2aw2P2B5nWLxl4BNqgJso234TeX2J-50RVhVtwtvyf8lKg/exec";
 
+        let activeStudentId = "";
+        let currentPeriod = "";
+
+        function showMessage(type, text) {
+            const message = document.getElementById("message");
+            const icon = type === "error"
+                ? "fa-circle-xmark"
+                : type === "loading"
+                    ? "fa-spinner fa-spin"
+                    : "fa-circle-check";
+            message.innerHTML = `
+                <div class="message ${type}">
+                    <i class="fa-solid ${icon}"></i>
+                    ${text}
+                </div>
+            `;
+        }
+
+        async function requestApi(params) {
+            const url = `${API_URL}?${new URLSearchParams(params).toString()}`;
+            const response = await fetch(url);
+            if (!response.ok) throw new Error("Permintaan ke server gagal.");
+            return await response.json();
+        }
+
         async function cariSantri() {
             const input = document.getElementById("idMuridInput");
-            const idMurid = input.value.trim();
-            const message = document.getElementById("message");
+            const idMurid = input.value.trim().toUpperCase();
             const hasil = document.getElementById("hasilSantri");
+            const historySelect = document.getElementById("historySelect");
 
-            if (idMurid === "") {
+            if (!idMurid) {
                 hasil.style.display = "none";
-                message.innerHTML = `
-                    <div class="message error">
-                        <i class="fa-solid fa-circle-exclamation"></i>
-                        Silakan masukkan ID Murid.
-                    </div>
-                `;
+                historySelect.innerHTML = '<option value="__current__">Laporan terbaru</option>';
+                historySelect.disabled = true;
+                showMessage("error", "Silakan masukkan ID Murid.");
                 return;
             }
 
-            message.innerHTML = `
-                <div class="message loading">
-                    <i class="fa-solid fa-spinner fa-spin"></i>
-                    Sedang mencari data...
-                </div>
-            `;
+            activeStudentId = idMurid;
+            historySelect.disabled = true;
+            showMessage("loading", "Sedang mencari data santri...");
 
             try {
-                const response = await fetch(`${API_URL}?idMurid=${encodeURIComponent(idMurid)}`);
-                const data = await response.json();
+                const result = await requestApi({ idMurid });
 
-               if (data.success) {
-
-                    const santri = data.data;
-
-                    message.innerHTML = `
-                        <div class="message success">
-                            <i class="fa-solid fa-circle-check"></i>
-                            Data santri ditemukan.
-                        </div>
-                    `;
-
-                    setTimeout(() => {
-                        message.classList.add("fade-out");
-
-                        setTimeout(() => {
-                            message.innerHTML = "";
-                            message.classList.remove("fade-out");
-                        }, 500);
-
-                    }, 2500);
-
-
-                    // =========================
-                    // DATA SANTRI
-                    // =========================
-
-                    document.getElementById("nama").textContent = santri.nama || "-";
-                    document.getElementById("periode").textContent = santri.periode || "-";
-                    document.getElementById("noPaspor").textContent = santri.noPaspor || noPaspor;
-                    document.getElementById("pendidikan").textContent = santri.pendidikan || "-";
-                    document.getElementById("rumah").textContent = santri.rumah || "-";
-
-                    // =========================
-                    // FOTO SANTRI
-                    // =========================
-
-                    const foto = document.getElementById("fotoSantri");
-
-                    if (santri.foto) {
-
-                        const match = santri.foto.match(/[-\w]{25,}/);
-
-                        if (match) {
-
-                            foto.src =
-                                "https://drive.google.com/thumbnail?id=" +
-                                match[0] +
-                                "&sz=w500";
-
-                            } else {
-
-                                foto.src = santri.foto;
-
-                            }
-
-                    } else {
-
-                        foto.src = "";
-
-                    }
-                    // AL-QUR'AN
-                    document.getElementById("hafalanBaru").textContent = santri.hafalanBaru || "-";
-                    document.getElementById("murajaah").textContent = santri.tilawah || "-";
-                    document.getElementById("targetTasmi").textContent = santri.targetTasmi || "-";
-
-                    // AKADEMIK
-                    document.getElementById("sekolah").textContent = santri.sekolah || "-";
-                    document.getElementById("bimbel").textContent = santri.bimbel || "-";
-                    document.getElementById("penggunaanHP").textContent = santri.penggunaanHP || "-";
-
-                    // KEPRIBADIAN
-                    document.getElementById("akhlaq").textContent = santri.akhlaq || "-";
-                    document.getElementById("adab").textContent = santri.adab || "-";
-                    document.getElementById("ubudiyyah").textContent = santri.ubudiyyah || "-";
-
-                    // MATAN & BACAAN
-                    document.getElementById("hafalMatan").textContent = santri.hafalMatan || "-";
-                    document.getElementById("bacaBuku").textContent = santri.bacaBuku || "-";
-
-                    // CATATAN
-                    document.getElementById("keterangan").textContent = santri.keterangan || "-";
-                    document.getElementById("musyrif").textContent = santri.musyrif || "-";
-
-                    hasil.style.display = "block";
-                    hasil.scrollIntoView({ behavior: "smooth" });
-
-                } else {
+                if (!result.success || !result.data) {
                     hasil.style.display = "none";
-                    message.innerHTML = `
-                        <div class="message error">
-                            <i class="fa-solid fa-circle-xmark"></i>
-                            ${data.message || 'ID Murid tidak ditemukan.'}
-                    `;
+                    showMessage("error", result.message || "ID Murid tidak ditemukan.");
+                    return;
                 }
+
+                renderReport(result.data);
+                currentPeriod = String(result.data.periode || "").trim();
+                hasil.style.display = "block";
+                showMessage("success", "Data santri ditemukan.");
+
+                await loadHistoryPeriods(idMurid, currentPeriod);
+                hasil.scrollIntoView({ behavior: "smooth" });
+
+                // Hilangkan notifikasi sukses setelah beberapa saat.
+                window.setTimeout(() => {
+                    const message = document.getElementById("message");
+                    message.innerHTML = "";
+                }, 2500);
 
             } catch (error) {
                 console.error(error);
                 hasil.style.display = "none";
-                message.innerHTML = `
-                    <div class="message error">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        Terjadi kesalahan saat mengambil data.
-                    </div>
-                `;
+                showMessage("error", "Terjadi kesalahan saat mengambil data. Silakan coba lagi.");
             }
         }
 
-        document.getElementById("idMuridInput").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                cariSantri();
+        function renderReport(santri) {
+            document.getElementById("nama").textContent = santri.nama || "-";
+            document.getElementById("periode").textContent = santri.periode || "-";
+            document.getElementById("noPaspor").textContent = santri.noPaspor || "-";
+            document.getElementById("pendidikan").textContent = santri.pendidikan || "-";
+            document.getElementById("rumah").textContent = santri.rumah || "-";
+
+            const foto = document.getElementById("fotoSantri");
+            if (santri.foto) {
+                const match = String(santri.foto).match(/[-\w]{25,}/);
+                foto.src = match
+                    ? "https://drive.google.com/thumbnail?id=" + match[0] + "&sz=w500"
+                    : santri.foto;
+            } else {
+                foto.removeAttribute("src");
             }
+
+            document.getElementById("hafalanBaru").textContent = santri.hafalanBaru || "-";
+            document.getElementById("murajaah").textContent = santri.tilawah || "-";
+            document.getElementById("targetTasmi").textContent = santri.targetTasmi || "-";
+
+            document.getElementById("sekolah").textContent = santri.sekolah || "-";
+            document.getElementById("bimbel").textContent = santri.bimbel || "-";
+            document.getElementById("penggunaanHP").textContent = santri.penggunaanHP || "-";
+
+            document.getElementById("akhlaq").textContent = santri.akhlaq || "-";
+            document.getElementById("adab").textContent = santri.adab || "-";
+            document.getElementById("ubudiyyah").textContent = santri.ubudiyyah || "-";
+
+            document.getElementById("hafalMatan").textContent = santri.hafalMatan || "-";
+            document.getElementById("bacaBuku").textContent = santri.bacaBuku || "-";
+
+            document.getElementById("keterangan").textContent = santri.keterangan || "-";
+            document.getElementById("musyrif").textContent = santri.musyrif || "-";
+        }
+
+        async function loadHistoryPeriods(idMurid, activePeriod) {
+            const select = document.getElementById("historySelect");
+            const note = document.getElementById("historyNote");
+
+            select.innerHTML = "";
+            const currentOption = document.createElement("option");
+            currentOption.value = "__current__";
+            currentOption.textContent = activePeriod
+                ? `Laporan terbaru (${activePeriod})`
+                : "Laporan terbaru";
+            select.appendChild(currentOption);
+            select.value = "__current__";
+
+            try {
+                const result = await requestApi({ action: "periods", idMurid });
+                if (!result.success) throw new Error(result.message || "Riwayat tidak dapat dimuat.");
+
+                const periods = Array.isArray(result.periods) ? result.periods : [];
+                const oldPeriods = periods.filter(period => String(period).trim() !== String(activePeriod).trim());
+
+                oldPeriods.forEach(period => {
+                    const option = document.createElement("option");
+                    option.value = period;
+                    option.textContent = period;
+                    select.appendChild(option);
+                });
+
+                select.disabled = false;
+                note.textContent = oldPeriods.length
+                    ? "Pilih bulan untuk membuka laporan yang tersimpan."
+                    : "Belum ada arsip bulan lain. Arsip akan tersedia setelah proses penyimpanan bulanan berjalan.";
+            } catch (error) {
+                console.error(error);
+                select.disabled = false;
+                note.textContent = "Riwayat belum bisa dimuat. Laporan terbaru tetap dapat dilihat.";
+            }
+        }
+
+        async function pilihPeriode() {
+            const select = document.getElementById("historySelect");
+            const periode = select.value;
+            if (!activeStudentId || !periode) return;
+
+            if (periode === "__current__") {
+                showMessage("loading", "Memuat laporan terbaru...");
+                try {
+                    const result = await requestApi({ idMurid: activeStudentId });
+                    if (!result.success || !result.data) throw new Error(result.message || "Laporan tidak ditemukan.");
+                    renderReport(result.data);
+                    currentPeriod = String(result.data.periode || "").trim();
+                    showMessage("success", "Laporan terbaru ditampilkan.");
+                } catch (error) {
+                    console.error(error);
+                    showMessage("error", "Laporan terbaru gagal dimuat.");
+                }
+                return;
+            }
+
+            showMessage("loading", `Memuat laporan ${periode}...`);
+            select.disabled = true;
+            try {
+                const result = await requestApi({
+                    action: "report",
+                    idMurid: activeStudentId,
+                    periode
+                });
+
+                if (!result.success || !result.data) {
+                    throw new Error(result.message || "Laporan untuk periode ini tidak ditemukan.");
+                }
+
+                renderReport(result.data);
+                showMessage("success", `Laporan ${periode} ditampilkan.`);
+            } catch (error) {
+                console.error(error);
+                showMessage("error", error.message || "Laporan lama gagal dimuat.");
+                // Kembalikan pilihan ke laporan terbaru jika pemuatan gagal.
+                select.value = "__current__";
+            } finally {
+                select.disabled = false;
+            }
+        }
+
+        document.getElementById("historySelect").addEventListener("change", pilihPeriode);
+
+        document.getElementById("idMuridInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") cariSantri();
         });
     </script>
 </body>
